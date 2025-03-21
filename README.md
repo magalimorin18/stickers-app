@@ -1,1 +1,1 @@
-# zksync-app
+# stickers-app
