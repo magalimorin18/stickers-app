@@ -8,7 +8,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(`Running deploy script`);
 
   // Initialize the wallet using your private key.
-  const wallet = new Wallet(vars.get("vanesa123A"));
+  const wallet = new Wallet(vars.get("private-key"));
 
   // Create deployer object and load the artifact of the contract we want to deploy.
   const deployer = new Deployer(hre, wallet);
