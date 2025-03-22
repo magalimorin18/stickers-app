@@ -3,7 +3,6 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { BASE_URL } from "../globals";
 
-// Interfaz para definir la estructura de un sticker pack
 interface StickerPack {
   id: string;
   packName: string;
@@ -14,29 +13,30 @@ interface StickerPack {
 }
 
 function Marketplace() {
-  // Datos de ejemplo de sticker packs (reemplaza esto con tus datos reales)
   const stickerPacks: StickerPack[] = [
     {
       id: "1",
-      packName: "Cute Animals",
-      creatorName: "User123",
+      packName: "Personal Stickers",
+      creatorName: "Magali",
       stickers: [
-        { imageUrl: "https://via.placeholder.com/100", emoji: ["😀"] },
-        { imageUrl: "https://via.placeholder.com/100", emoji: ["😂"] },
+        { imageUrl: "./images/mag-1.webp", emoji: ["😀"] },
+        { imageUrl: "./images/mag-2.jpeg", emoji: ["😀"] },
+        {
+          imageUrl:
+            "https://api.universalprofile.cloud/ipfs/QmPNNJCM67pHeWFQsJuavHfWEzWTM1Ws28Po43v1tx58Kf",
+          emoji: ["😂"],
+        },
       ],
-      android_play_store_link: "",
-      ios_app_store_link: "",
     },
     {
       id: "2",
       packName: "Funny Faces",
       creatorName: "StickerMaster",
       stickers: [
-        { imageUrl: "https://via.placeholder.com/100", emoji: ["😍"] },
-        { imageUrl: "https://via.placeholder.com/100", emoji: ["😎"] },
+        { imageUrl: "./images/ff-1.png", emoji: ["😀"] },
+        { imageUrl: "./images/ff-2.png", emoji: ["😀"] },
+        { imageUrl: "./images/ff-3.png", emoji: ["😀"] },
       ],
-      android_play_store_link: "",
-      ios_app_store_link: "",
     },
   ];
 
@@ -67,7 +67,7 @@ function Marketplace() {
         try {
           const webpURL = `${BASE_URL}/process-image?url=${encodeURIComponent(
             sticker.imageUrl,
-          )}`; // Use backend endpoint
+          )}`;
 
           const response = await fetch(webpURL);
           if (!response.ok) {
@@ -76,7 +76,7 @@ function Marketplace() {
           const webpBlob = await response.blob();
           zip.file(`sticker${index + 1}.webp`, webpBlob);
         } catch (error) {
-          console.error(`Error processing sticker ${index + 1}:`, error);
+          console.error(`❌Error processing sticker ${index + 1}:`, error);
         }
       }),
     );
@@ -102,19 +102,9 @@ function Marketplace() {
       console.log("File Type:", wastickersFile.type);
       console.log("File Size:", wastickersFile.size);
 
-      if (navigator.share) {
-        console.log("Attempting to share using navigator.share"); // RIGHT BEFORE navigator.share
-        await navigator.share({
-          title: pack.packName,
-          text: `Get the ${pack.packName} sticker pack for WhatsApp!`,
-          files: [wastickersFile],
-        });
-        console.log("Shared successfully");
-      } else {
-        console.log("navigator.share not supported, using saveAs");
-        saveAs(wastickersBlob, `${pack.packName}.wastickers`); // Trigger download
-        console.log("Downloaded .wastickers file");
-      }
+      console.log("navigator.share not supported, using saveAs");
+      saveAs(wastickersBlob, `${pack.packName}.zip`); // Trigger download
+      console.log("Downloaded .wastickers file");
     } catch (error) {
       console.error("Error exporting sticker pack:", error);
       alert("Failed to export sticker pack. See console for details.");
