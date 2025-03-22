@@ -1,10 +1,29 @@
 import { CSSProperties } from "react";
 
+import { DaimoPayButton } from "@daimo/pay";
+import { baseUSDC  } from "@daimo/contract";
+import { getAddress } from 'viem';
+
+import { DaimoPayProvider, getDefaultConfig } from "@daimo/pay";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { type ReactNode } from "react";
+import { createConfig, WagmiProvider } from "wagmi";
+import { DAIMOPAY_API_URL } from "../shared";
+
+export const wagmiConfig = createConfig(
+  getDefaultConfig({
+    appName: "Daimo Pay Basic Demo",
+    walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
+  }),
+);
+
+const queryClient = new QueryClient();
+
 function Payment() {
-  const creatorName = "StickerProCreator";
+  const creatorName = "Pepe Diaz";
   const stickerPacksCount = 12;
   const successfulDownloads = 100;
-  const walletAddress = "0x0000000000000000000000000000000000000000"; // Ejemplo de dirección
+  const walletAddress = "0xe1448A266849538da23Df9061dDa57C20aF1009e"; // Ejemplo de dirección
 
   const handleReceivePayment = () => {
     // Aquí va la lógica para procesar el pago
@@ -32,9 +51,21 @@ function Payment() {
         {walletAddress.substring(walletAddress.length - 10)}
       </p>
 
-      <button style={paymentButtonStyle} onClick={handleReceivePayment}>
-        Receive Payment
-      </button>
+      
+      <WagmiProvider config={wagmiConfig}>
+        <QueryClientProvider client={queryClient}>
+          <DaimoPayProvider payApiUrl={DAIMOPAY_API_URL} debugMode>
+          <DaimoPayButton
+            appId="daimopay-demo"
+            toChain={baseUSDC.chainId}
+            toAddress={getAddress("0xe1448A266849538da23Df9061dDa57C20aF1009e")}
+            toToken={getAddress(baseUSDC.token)}
+            intent="Deposit"
+            />
+          </DaimoPayProvider>
+        </QueryClientProvider>
+      </WagmiProvider>
+      
     </div>
   );
 }
