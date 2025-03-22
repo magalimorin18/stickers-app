@@ -41,7 +41,7 @@ const UploadToIPFSButton: React.FC<UploadToIPFSButtonProps> = ({
             pinata_api_key: PINATA_API_KEY,
             pinata_secret_api_key: PINATA_SECRET_API_KEY,
           },
-        }
+        },
       );
 
       const cid = res.data.IpfsHash;

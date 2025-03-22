@@ -5,7 +5,7 @@ import { vars } from "hardhat/config";
 
 // An example of a deploy script that will deploy and call a simple contract.
 export default async function (hre: HardhatRuntimeEnvironment) {
-  console.log(`Running deploy script`);
+  console.log("Running deploy script");
 
   // Initialize the wallet using your private key.
   const wallet = new Wallet(vars.get("private-key"));
@@ -22,6 +22,6 @@ export default async function (hre: HardhatRuntimeEnvironment) {
   console.log(
     `${
       artifact.contractName
-    } was deployed to ${await tokenContract.getAddress()}`
+    } was deployed to ${await tokenContract.getAddress()}`,
   );
 }
