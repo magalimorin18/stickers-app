@@ -1,6 +1,7 @@
 import { CSSProperties, useState } from "react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import { BASE_URL } from "../globals";
 
 // Interfaz para definir la estructura de un sticker pack
 interface StickerPack {
@@ -60,12 +61,11 @@ function Marketplace() {
 
     zip.file("metadata.json", JSON.stringify(metadata));
 
-    const backendURL = "http://localhost:3001"; // Replace with your backend URL
     // Download images, convert to WebP using the backend, and add to ZIP
     await Promise.all(
       pack.stickers.map(async (sticker, index) => {
         try {
-          const webpURL = `${backendURL}/process-image?url=${encodeURIComponent(
+          const webpURL = `${BASE_URL}/process-image?url=${encodeURIComponent(
             sticker.imageUrl,
           )}`; // Use backend endpoint
 
