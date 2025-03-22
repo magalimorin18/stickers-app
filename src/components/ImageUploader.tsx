@@ -1,5 +1,5 @@
 // ImageUploader.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 interface ImageUploaderProps {
   onImageUpload: (file: File) => void;

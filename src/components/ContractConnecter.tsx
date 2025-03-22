@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import { ContractAbi } from "../abi/CidCounterAbi";
 import { useState } from "react";
+import { CONTRACT_ADDRESS } from "../globals";
 
 interface ContractConecterProps {
   signer: ethers.Signer | null;
@@ -11,8 +12,7 @@ const ContractConnecter: React.FC<ContractConecterProps> = ({
   signer,
   cid,
 }) => {
-  const contractAddress = "0x6914403E7873ABAa193Deb1Bdd712C47c1A7bA04";
-  const contract = new ethers.Contract(contractAddress, ContractAbi, signer);
+  const contract = new ethers.Contract(CONTRACT_ADDRESS, ContractAbi, signer);
   const [count, setCount] = useState(null);
   const [added, setAdded] = useState(false);
   const [voted, setVoted] = useState(false);
@@ -38,6 +38,7 @@ const ContractConnecter: React.FC<ContractConecterProps> = ({
   const incrementCid = async (cid: string) => {
     try {
       setIsLoading(true);
+      setVoted(false);
       const tx = await contract.incrementCid(cid);
       await tx.wait();
       console.log("CID counter incremented");
@@ -53,7 +54,6 @@ const ContractConnecter: React.FC<ContractConecterProps> = ({
 
   const getCidCount = async (cid: string) => {
     try {
-      setIsLoading(true);
       const count = await contract.getCidCount(cid);
       console.log(`CID count: ${count.toString()}`);
       setCount(count);
@@ -61,7 +61,6 @@ const ContractConnecter: React.FC<ContractConecterProps> = ({
       console.error("Get count failed:", err);
       return null;
     }
-    setIsLoading(false);
   };
 
   const handleAddCid = () => {
@@ -84,34 +83,30 @@ const ContractConnecter: React.FC<ContractConecterProps> = ({
     <div className="flex-col">
       <button
         onClick={() => handleAddCid()}
-        className="bg-blue-600 text-white px-4 py-2 rounded m-4 "
+        className="bg-blue-500 text-white px-4 py-2 rounded m-4 "
       >
         Add the sticker pack to the smart contract
       </button>
 
       {isLoading && <p>⏳ Loading... </p>}
+      {voted && <p>🙌 Voted</p>}
+      {count && <p>👀 Number of votes: {count}</p>}
 
       {added && (
-        <div>
-          <div className="flex-row">
-            <button
-              onClick={() => handleIncrementCid()}
-              className="bg-green-600 text-white px-4 py-2 rounded m-4"
-            >
-              Vote for this sticker pack
-            </button>
-            {voted && <p>🙌 Voted</p>}
-          </div>
+        <div className="flex-row">
+          <button
+            onClick={() => handleIncrementCid()}
+            className="bg-green-600 text-white px-4 py-2 rounded m-4"
+          >
+            Vote for this sticker pack
+          </button>
 
-          <div className="flex-row">
-            <button
-              onClick={() => handleGetCidCound()}
-              className="bg-blue-600 text-white px-4 py-2 rounded m-4"
-            >
-              Get number of votes
-            </button>
-            {count && <p>Number of votes: {count}</p>}
-          </div>
+          <button
+            onClick={() => handleGetCidCound()}
+            className="bg-orange-400 text-white px-4 py-2 rounded m-4"
+          >
+            Get number of votes
+          </button>
         </div>
       )}
     </div>
