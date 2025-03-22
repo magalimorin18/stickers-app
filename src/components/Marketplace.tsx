@@ -1,100 +1,177 @@
 import React from 'react';
+import { CSSProperties, useState } from 'react';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
-// Interfaz para definir la estructura de un sticker
-interface Sticker {
-  id: string;
-  imageUrl: string;
-  creatorName: string;
+// Interfaz para definir la estructura de un sticker pack
+interface StickerPack {
+    id: string;
+    packName: string;
+    creatorName: string;
+    stickers: { imageUrl: string; emoji: string[] }[]; // Array of sticker images and emojis
+    android_play_store_link?: string;  // Optional
+    ios_app_store_link?: string; // Optional
 }
 
 function Marketplace() {
-  // Datos de ejemplo de stickers (reemplaza esto con tus datos reales)
-  const stickers: Sticker[] = [
-    {
-      id: '1',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'Usuario123',
-    },
-    {
-      id: '2',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'StickerMaster',
-    },
-    {
-      id: '3',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'ArtLover',
-    },
-    {
-      id: '4',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'Usuario123',
-    },
-    {
-      id: '5',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'StickerMaster',
-    },
-    {
-      id: '6',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'ArtLover',
-    },
-    {
-      id: '7',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'Usuario123',
-    },
-    {
-      id: '8',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'StickerMaster',
-    },
-    {
-      id: '9',
-      imageUrl: 'https://acdn-us.mitiendanube.com/stores/001/081/351/products/messi1-a8e82ece5587b8a8b916856486000277-640-0.png', // Reemplaza con la URL real del sticker
-      creatorName: 'ArtLover',
-    },
-  ];
+    // Datos de ejemplo de sticker packs (reemplaza esto con tus datos reales)
+    const stickerPacks: StickerPack[] = [
+        {
+            id: '1',
+            packName: 'Cute Animals',
+            creatorName: 'User123',
+            stickers: [
+                { imageUrl: 'https://via.placeholder.com/100', emoji: ["😀"] },
+                { imageUrl: 'https://via.placeholder.com/100', emoji: ["😂"] }
+            ],
+            android_play_store_link: "",
+            ios_app_store_link: ""
+        },
+        {
+            id: '2',
+            packName: 'Funny Faces',
+            creatorName: 'StickerMaster',
+            stickers: [
+                { imageUrl: 'https://via.placeholder.com/100', emoji: ["😍"] },
+                { imageUrl: 'https://via.placeholder.com/100', emoji: ["😎"] }
+            ],
+            android_play_store_link: "",
+            ios_app_store_link: ""
+        },
+    ];
 
-  const handleDownload = (stickerId: string) => {
-    // Aquí implementarías la lógica de descarga del sticker con el ID especificado
-    console.log(`Descargando sticker con ID: ${stickerId}`);
-    // Puedes usar una librería como `file-saver` para facilitar la descarga
-    // o generar un enlace <a> con el atributo `download`
-  };
+    const [isExporting, setIsExporting] = useState(false); // Loading State
 
-  const handleShare = (stickerId: string) => {
-    // Aquí implementarías la lógica de compartir el sticker con el ID especificado
-    console.log(`Compartiendo sticker con ID: ${stickerId}`);
-    // Puedes usar la Web Share API o generar un enlace para compartir en redes sociales
-  };
+    const createWastickersFile = async (pack: StickerPack): Promise<Blob> => {
+        const zip = new JSZip();
+        const metadata = {
+            android_play_store_link: pack.android_play_store_link || "",
+            ios_app_store_link: pack.ios_app_store_link || "",
+            emojis: pack.stickers.flatMap(s => s.emoji), // Flatten emojis array
+            image_data_version: 1,
+            avoid_cache: true,
+            sticker_pack_id: pack.id,
+            sticker_pack_name: pack.packName,
+            sticker_pack_publisher: pack.creatorName,
+            stickers: pack.stickers.map((sticker, index) => ({
+                image_file: `sticker${index + 1}.webp`,
+                emojis: sticker.emoji
+            }))
+        };
 
-  return (
-    <div style={{ padding: '20px', marginTop: '60px' }}>
-      <h2>Marketplace de Stickers</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {stickers.map((sticker) => (
-          <div key={sticker.id} style={{
-            width: '200px',
-            margin: '10px',
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            padding: '10px',
-            textAlign: 'center',
-            backgroundColor: 'white',
-          }}>
-            <img src={sticker.imageUrl} alt="Sticker" style={{ maxWidth: '100%', height: 'auto' }} />
-            <p>Creador: {sticker.creatorName}</p>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <button onClick={() => handleDownload(sticker.id)}>Descargar</button>
-              <button onClick={() => handleShare(sticker.id)}>Compartir</button>
+        zip.file("metadata.json", JSON.stringify(metadata));
+
+        const backendURL = 'http://localhost:3001'; // Replace with your backend URL
+        // Download images, convert to WebP using the backend, and add to ZIP
+        await Promise.all(pack.stickers.map(async (sticker, index) => {
+            try {
+                const webpURL = `${backendURL}/process-image?url=${encodeURIComponent(sticker.imageUrl)}`;  // Use backend endpoint
+
+                const response = await fetch(webpURL);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const webpBlob = await response.blob();
+                zip.file(`sticker${index + 1}.webp`, webpBlob);
+            } catch (error) {
+                console.error(`Error processing sticker ${index + 1}:`, error);
+            }
+        }));
+
+        return zip.generateAsync({ type: "blob" });
+    };
+
+
+    const handleExportToWhatsApp = async (pack: StickerPack) => {
+        console.log("handleExportToWhatsApp called for pack:", pack.packName); // VERY FIRST LINE
+        setIsExporting(true); // Set loading state to true
+        try {
+            console.log("Creating wastickersFile...");
+            const wastickersBlob = await createWastickersFile(pack);
+            console.log("wastickersBlob created successfully");
+            const wastickersFile = new File([wastickersBlob], `${pack.packName}.wastickers`, { type: 'application/zip' });
+
+            // Debugging information
+            console.log("File Object:", wastickersFile);
+            console.log("File Type:", wastickersFile.type);
+            console.log("File Size:", wastickersFile.size);
+
+            if (navigator.share) {
+                console.log("Attempting to share using navigator.share"); // RIGHT BEFORE navigator.share
+                await navigator.share({
+                    title: pack.packName,
+                    text: `Get the ${pack.packName} sticker pack for WhatsApp!`,
+                    files: [wastickersFile],
+                });
+                console.log('Shared successfully');
+            } else {
+                console.log("navigator.share not supported, using saveAs");
+                saveAs(wastickersBlob, `${pack.packName}.wastickers`); // Trigger download
+                console.log('Downloaded .wastickers file');
+            }
+        } catch (error) {
+            console.error("Error exporting sticker pack:", error);
+            alert("Failed to export sticker pack. See console for details.");
+        } finally {
+            setIsExporting(false); // Set loading state to false after completion or error
+            console.log("handleExportToWhatsApp completed (success or failure)"); // LAST LINE IN FUNCTION
+        }
+    };
+
+    return (
+        <div style={marketplaceContainerStyle}>
+            <h2>Marketplace de Sticker Packs</h2>
+            <div style={stickerPackListStyle}>
+                {stickerPacks.map((pack) => (
+                    <div key={pack.id} style={stickerPackCardStyle}>
+                        <h3>{pack.packName}</h3>
+                        <p>Creator: {pack.creatorName}</p>
+                        <div style={stickerPreviewStyle}>
+                            {pack.stickers.map((sticker, index) => (
+                                <img key={index} src={sticker.imageUrl} alt={`Sticker ${index + 1}`} style={stickerImageStyle} />
+                            ))}
+                        </div>
+            <button onClick={() => handleExportToWhatsApp(pack)} disabled={isExporting}>
+                {isExporting ? 'Exporting...' : 'Export to WhatsApp'}
+            </button>
+                    </div>
+                ))}
             </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+        </div>
+    );
 }
+
+// Styles
+const marketplaceContainerStyle: CSSProperties = {
+    padding: '20px',
+    marginTop: '60px',
+};
+
+const stickerPackListStyle: CSSProperties = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+};
+
+const stickerPackCardStyle: CSSProperties = {
+    width: '250px',
+    margin: '10px',
+    padding: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '5px',
+    textAlign: 'center',
+};
+
+const stickerPreviewStyle: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '10px',
+};
+
+const stickerImageStyle: CSSProperties = {
+    width: '50px',
+    height: '50px',
+    margin: '5px',
+};
 
 export default Marketplace;
