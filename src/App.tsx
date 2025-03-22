@@ -3,7 +3,6 @@ import { ethers } from "ethers";
 import ImageUploader from "./components/ImageUploader";
 import UploadToIPFSButton from "./components/UploadToIPFSButton";
 import ContractConnecter from "./components/ContractConnecter";
-
 // zkSync Era Testnet Chain Info
 const zkSyncTestnetParams = {
   chainId: "0x12C",
@@ -88,7 +87,7 @@ function App() {
 
   return (
     <div className="p-4 max-w-xl mx-auto text-center">
-      <h1 className="text-3xl font-bold mb-4">Connect MetaMask</h1>
+      <h1 className="text-3xl font-bold mb-4 text-black ">Connect MetaMask</h1>
       {isConnected ? (
         <div>
           <p className="text-lg mb-2">Connected Wallet:</p>
@@ -103,7 +102,7 @@ function App() {
         >
           Connect MetaMask
         </button>
-      )}
+      )}  
       <ImageUploader
         fixedWidth={300}
         fixedHeight={300}
