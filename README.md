@@ -1,1 +1,1 @@
-# stickers-app
+## MINI APP
