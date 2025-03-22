@@ -68,21 +68,21 @@ const ContractConnecter: React.FC<ContractConecterProps> = ({
       <p>I am a contract interacting with CID {cid}</p>
       <button
         onClick={() => handleAddCid()}
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="bg-blue-600 text-white px-4 py-2 rounded m-4 "
       >
         Add the sticker pack to the smart contract
       </button>
 
       <button
         onClick={() => handleGetCidCound()}
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="bg-blue-600 text-white px-4 py-2 rounded m-4"
       >
         Get number of votes
       </button>
 
       <button
         onClick={() => handleIncrementCid()}
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className="bg-blue-600 text-white px-4 py-2 rounded m-4"
       >
         Vote for this sticker pack
       </button>
