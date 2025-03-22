@@ -1,10 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import StickerUploader from './components/StickerUploader';
-import Marketplace from './components/Marketplace';
-import Leaderboard from './components/Leaderboard';
-import Payment from './components/Payment';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import StickerUploader from "./components/StickerUploader";
+import Marketplace from "./components/Marketplace";
+import Leaderboard from "./components/Leaderboard";
+import Payment from "./components/Payment";
 
 function App() {
   return (

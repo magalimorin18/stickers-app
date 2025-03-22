@@ -1,8 +1,9 @@
 // UploadToIPFSButton.tsx (using Pinata)
 import React, { useState } from "react";
 import axios from "axios";
-const PINATA_API_KEY="efd608e5242f7a558261";
-const PINATA_SECRET_API_KEY="e0a71ec02e724e13bb077a0b969197d707814c78912e29c53736635d8eef6297";
+const PINATA_API_KEY = "efd608e5242f7a558261";
+const PINATA_SECRET_API_KEY =
+  "e0a71ec02e724e13bb077a0b969197d707814c78912e29c53736635d8eef6297";
 //import { PINATA_API_KEY, PINATA_SECRET_API_KEY } from "../globals";
 
 interface UploadToIPFSButtonProps {
@@ -43,7 +44,7 @@ const UploadToIPFSButton: React.FC<UploadToIPFSButtonProps> = ({
             pinata_api_key: PINATA_API_KEY,
             pinata_secret_api_key: PINATA_SECRET_API_KEY,
           },
-        }
+        },
       );
 
       const cid = res.data.IpfsHash;

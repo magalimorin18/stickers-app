@@ -1,5 +1,4 @@
-import React from 'react';
-import { CSSProperties } from 'react';
+import { CSSProperties } from "react";
 
 function Payment() {
   const creatorName = "StickerProCreator";
@@ -17,9 +16,7 @@ function Payment() {
     <div style={paymentContainerStyle}>
       <h2 style={headerStyle}>Payment Details</h2>
 
-      <p style={creatorInfoStyle}>
-        Creator Name: {creatorName}
-      </p>
+      <p style={creatorInfoStyle}>Creator Name: {creatorName}</p>
 
       <p style={stickerPacksStyle}>
         Sticker Packs: {stickerPacksCount}
@@ -31,7 +28,8 @@ function Payment() {
       </p>
 
       <p style={walletAddressStyle}>
-        Your Wallet: {walletAddress.substring(0, 10)}...{walletAddress.substring(walletAddress.length - 10)}
+        Your Wallet: {walletAddress.substring(0, 10)}...
+        {walletAddress.substring(walletAddress.length - 10)}
       </p>
 
       <button style={paymentButtonStyle} onClick={handleReceivePayment}>
@@ -43,50 +41,50 @@ function Payment() {
 
 // Estilos
 const paymentContainerStyle: CSSProperties = {
-  padding: '20px',
-  marginTop: '60px',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
+  padding: "20px",
+  marginTop: "60px",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
 };
 
 const headerStyle: CSSProperties = {
-  fontSize: '2em',
-  fontWeight: 'bold',
-  textAlign: 'center',
-  marginBottom: '20px',
+  fontSize: "2em",
+  fontWeight: "bold",
+  textAlign: "center",
+  marginBottom: "20px",
 };
 
 const creatorInfoStyle: CSSProperties = {
-  fontSize: '1.2em',
-  marginBottom: '10px',
+  fontSize: "1.2em",
+  marginBottom: "10px",
 };
 
 const stickerPacksStyle: CSSProperties = {
-  fontSize: '1em',
-  marginBottom: '10px',
+  fontSize: "1em",
+  marginBottom: "10px",
 };
 
 const successfulDownloadsStyle: CSSProperties = {
-  fontSize: '1em',
-  marginBottom: '10px',
-  color: 'green',
+  fontSize: "1em",
+  marginBottom: "10px",
+  color: "green",
 };
 
 const walletAddressStyle: CSSProperties = {
-  fontSize: '0.9em',
-  fontFamily: 'monospace',
-  marginBottom: '20px',
+  fontSize: "0.9em",
+  fontFamily: "monospace",
+  marginBottom: "20px",
 };
 
 const paymentButtonStyle: CSSProperties = {
-  backgroundColor: '#25D366', // Verde WhatsApp
-  color: 'white',
-  fontSize: '1.2em',
-  padding: '15px 30px',
-  borderRadius: '5px',
-  border: 'none',
-  cursor: 'pointer',
+  backgroundColor: "#25D366", // Verde WhatsApp
+  color: "white",
+  fontSize: "1.2em",
+  padding: "15px 30px",
+  borderRadius: "5px",
+  border: "none",
+  cursor: "pointer",
 };
 
 export default Payment;

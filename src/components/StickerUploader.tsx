@@ -1,4 +1,4 @@
- import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import ImageUploader from "./ImageUploader";
 import UploadToIPFSButton from "./UploadToIPFSButton";
@@ -86,7 +86,9 @@ function StickerUploader() {
 
   return (
     <div className="p-4 max-w-xl mx-auto text-center">
-      <h1 className="text-3xl font-bold mb-4 text-black mt-10 ">Connect MetaMask</h1>
+      <h1 className="text-3xl font-bold mb-4 text-black mt-10 ">
+        Connect MetaMask
+      </h1>
       {isConnected ? (
         <div>
           <p className="text-lg mb-2">Connected Wallet:</p>
@@ -101,7 +103,7 @@ function StickerUploader() {
         >
           Connect MetaMask
         </button>
-      )}  
+      )}
       <ImageUploader
         fixedWidth={300}
         fixedHeight={300}
