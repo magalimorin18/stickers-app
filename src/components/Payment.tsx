@@ -1,8 +1,8 @@
 import { CSSProperties } from "react";
 
 import { DaimoPayButton } from "@daimo/pay";
-import { baseUSDC  } from "@daimo/contract";
-import { getAddress } from 'viem';
+import { baseUSDC } from "@daimo/contract";
+import { getAddress } from "viem";
 
 import { DaimoPayProvider, getDefaultConfig } from "@daimo/pay";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -51,23 +51,22 @@ function Payment() {
         {walletAddress.substring(walletAddress.length - 10)}
       </p>
 
-      
       <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
           <DaimoPayProvider payApiUrl={DAIMOPAY_API_URL} debugMode>
-          <DaimoPayButton
-            appId="daimopay-demo"
-            toChain={baseUSDC.chainId}
-            toUnits="5.01" // 0.001 ETH
-            toAddress={getAddress("0xe1448A266849538da23Df9061dDa57C20aF1009e")}
-            toToken={getAddress(baseUSDC.token)}
-            
-            intent="Cash In"
+            <DaimoPayButton
+              appId="daimopay-demo"
+              toChain={baseUSDC.chainId}
+              toUnits="5.01" // 0.001 ETH
+              toAddress={getAddress(
+                "0xe1448A266849538da23Df9061dDa57C20aF1009e",
+              )}
+              toToken={getAddress(baseUSDC.token)}
+              intent="Cash In"
             />
           </DaimoPayProvider>
         </QueryClientProvider>
       </WagmiProvider>
-      
     </div>
   );
 }
