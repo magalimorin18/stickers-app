@@ -65,7 +65,7 @@ The contract is deployed on testnet:
 
    It will open the app on your phone.
 
-   ![Mini App World Coin](docs/images-demo/mini-app.gif)
+   <img src="docs/images-demo/mini-app.gif" alt="World Coin mini app " width="300" />
 
 ## 🚀 Getting Started
 
