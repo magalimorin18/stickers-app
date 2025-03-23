@@ -38,8 +38,6 @@ Meanwhile, creators can:
 
 ### 🎁 Get your rewards!
 
-![Sticky Marketplace Demo](docs/images-demo/demo-payment.gif)
-
 ## ⚙️ Tech Stack
 
 - 🧠 **zkSync** — decentralized ownership & royalties
