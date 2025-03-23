@@ -22,9 +22,18 @@ Meanwhile, creators can:
 - Protect their designs on-chain
 - Earn automatic royalties every time their stickers are shared or used
 
+## 📽 Demo
+
+### Upload your stickers
+
+### Get your rewards!
+
+![Sticky Marketplace Demo](docs/images-demo/demo-payment.gif)
+
 ## ⚙️ Tech Stack
 
 - 🧠 **zkSync** — decentralized ownership & royalties
+- 🔒 **Mantle**
 - ⚛️ **React** — modern frontend interface
 - ▲ **Vercel** — fast and easy frontend deployment
 

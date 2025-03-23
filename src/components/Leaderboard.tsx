@@ -125,7 +125,6 @@ function Leaderboard() {
 
   return (
     <div style={{ padding: "20px", marginTop: "60px" }}>
-      <h2>Leaderboard</h2>
       <table
         style={{ width: "100%", borderCollapse: "collapse", marginTop: "10px" }}
       >

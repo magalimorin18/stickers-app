@@ -104,6 +104,10 @@ function StickerUploader() {
           Connect MetaMask
         </button>
       )}
+
+      <h1 className="text-3xl font-bold mb-4 text-black mt-10 ">
+        Upload your sticker
+      </h1>
       <ImageUploader
         fixedWidth={300}
         fixedHeight={300}
