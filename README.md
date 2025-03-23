@@ -92,3 +92,9 @@ npm run start
 ### 3. Open the app:
 
 Open http://localhost:3000 with your browser to see the result.
+
+## 🚀UX/UI
+
+Basic banrd kit and desig system
+https://www.figma.com/design/keaLZ0Xuo87cGgRywtZmdI/BASE-STICKY?node-id=770-526&t=Rcn3XTux2FkZXppr-1
+
