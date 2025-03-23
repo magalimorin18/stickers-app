@@ -1,39 +1,33 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ethers } from "ethers";
 import ImageUploader from "./ImageUploader";
 import UploadToIPFSButton from "./UploadToIPFSButton";
 import ContractConnecter from "./ContractConnecter";
-// zkSync Era Testnet Chain Info
-const zkSyncTestnetParams = {
-  chainId: "0x12C",
-  chainName: "zkSync Era Sepolia Testnet",
-  nativeCurrency: {
-    name: "ETH",
-    symbol: "ETH",
-    decimals: 18,
-  },
-  rpcUrls: ["https://sepolia.era.zksync.dev"],
-};
+import { ChainParameters } from "../interface";
+import { mantleTestnetParams, zkSyncTestnetParams } from "../constants";
+
 function StickerUploader() {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [signer, setSigner] = useState<ethers.Signer | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [cid, setCid] = useState<string | null>(null);
+  const [chainParameters, setChainParameters] =
+    useState<ChainParameters>(zkSyncTestnetParams);
 
-  const switchToZkSyncChain = async () => {
+  const switchToChain = async (chainParameters: ChainParameters) => {
     if (!window.ethereum) return;
     try {
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
-        params: [{ chainId: zkSyncTestnetParams.chainId }],
+        params: [{ chainId: chainParameters.chainId }],
       });
     } catch (switchError: any) {
       if (switchError.code === 4902) {
         try {
           await window.ethereum.request({
             method: "wallet_addEthereumChain",
-            params: [zkSyncTestnetParams],
+            params: [chainParameters],
           });
         } catch (addError) {
           console.error("Failed to add zkSync chain:", addError);
@@ -46,7 +40,7 @@ function StickerUploader() {
 
   const connectWallet = async () => {
     if (typeof window !== "undefined" && window.ethereum) {
-      await switchToZkSyncChain();
+      await switchToChain(chainParameters);
 
       try {
         console.log("Connecting Wallet@@😇");
@@ -65,30 +59,31 @@ function StickerUploader() {
     }
   };
 
-  useEffect(() => {
-    const checkIfWalletIsConnected = async () => {
-      if (window.ethereum) {
-        await switchToZkSyncChain();
-        const accounts = await window.ethereum.request({
-          method: "eth_accounts",
-        });
-        if (accounts.length > 0) {
-          const provider = new ethers.BrowserProvider(window.ethereum);
-          const signer = await provider.getSigner();
-          setSigner(signer);
-          setWalletAddress(accounts[0]);
-          setIsConnected(true);
-        }
-      }
-    };
-    checkIfWalletIsConnected();
-  }, []);
-
   return (
     <div className="p-4 max-w-xl mx-auto text-center">
-      <h1 className="text-3xl font-bold mb-4 text-black mt-10 ">
-        Connect MetaMask
+      <h1 className="text-3xl font-bold mb-4 text-black mt-10">
+        Choose chain & Connect wallet
       </h1>
+      <div className="flex-row">
+        <button
+          onClick={() => {
+            setChainParameters(zkSyncTestnetParams);
+          }}
+          className="bg-pink-400 text-white px-4 py-2 rounded gap:10"
+        >
+          ZKSYNC
+        </button>
+
+        <button
+          onClick={() => {
+            setChainParameters(mantleTestnetParams);
+          }}
+          className="bg-pink-400 text-white px-4 py-2 rounded"
+        >
+          MANTLE
+        </button>
+      </div>
+
       {isConnected ? (
         <div>
           <p className="text-lg mb-2">Connected Wallet:</p>
@@ -101,7 +96,7 @@ function StickerUploader() {
           onClick={connectWallet}
           className="bg-blue-600 text-white px-4 py-2 rounded"
         >
-          Connect MetaMask
+          Connect MetaMask on {chainParameters.chainName} network
         </button>
       )}
 
@@ -125,7 +120,13 @@ function StickerUploader() {
           Uploaded CID: <code>{cid}</code>
         </p>
       )}
-      {cid && <ContractConnecter signer={signer} cid={cid} />}
+      {cid && (
+        <ContractConnecter
+          signer={signer}
+          cid={cid}
+          chain={chainParameters.chainName}
+        />
+      )}
     </div>
   );
 }

@@ -1,18 +1,23 @@
 import { ethers } from "ethers";
 import { ContractAbi } from "../abi/CidCounterAbi";
 import { useState } from "react";
-import { CONTRACT_ADDRESS } from "../globals";
+import { CONTRACT_ADDRESS_MANTLE, CONTRACT_ADDRESS_ZKSYNC } from "../globals";
+import { Chain } from "../interface";
 
 interface ContractConecterProps {
   signer: ethers.Signer | null;
   cid: string | null;
+  chain: Chain;
 }
 
 const ContractConnecter: React.FC<ContractConecterProps> = ({
   signer,
   cid,
+  chain,
 }) => {
-  const contract = new ethers.Contract(CONTRACT_ADDRESS, ContractAbi, signer);
+  const contractAddress =
+    chain == Chain.MANTLE ? CONTRACT_ADDRESS_MANTLE : CONTRACT_ADDRESS_ZKSYNC;
+  const contract = new ethers.Contract(contractAddress, ContractAbi, signer);
   const [count, setCount] = useState(null);
   const [added, setAdded] = useState(false);
   const [voted, setVoted] = useState(false);
