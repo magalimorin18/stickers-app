@@ -1,6 +1,7 @@
 # 🧲 Sticky Marketplace
 
 **Website:** [stickymkt.com](https://stickers-app-xi.vercel.app/)
+**Linktree:** [https://linktr.ee/stickymarketplace](https://linktr.ee/stickymarketplace)
 
 A universal sticker platform built on blockchain to empower both users and creators.
 
