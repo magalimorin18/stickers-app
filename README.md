@@ -32,13 +32,11 @@ Meanwhile, creators can:
 
 ### 📤 Upload your stickers
 
-### 🛍️ Visit sticker marketplace
+### 🛍️ Visit marketplace
 
 ### 🏆 Check Leaderboard
 
 ### 🎁 Get your rewards!
-
-TODO: ADD DEMO
 
 ![Sticky Marketplace Demo](docs/images-demo/demo-payment.gif)
 
@@ -55,7 +53,7 @@ TODO: ADD DEMO
 Find the smart contract code in the `smart-contracts/contracts` folder.
 The contract is deployed on testnet:
 
-- `zkSync`:[0x6914403E7873ABAa193Deb1Bdd712C47c1A7bA04](https://sepolia.explorer.zksync.io/address/0x6914403E7873ABAa193Deb1Bdd712C47c1A7bA04)
+- `zkSync`: [0x6914403E7873ABAa193Deb1Bdd712C47c1A7bA04](https://sepolia.explorer.zksync.io/address/0x6914403E7873ABAa193Deb1Bdd712C47c1A7bA04)
 
 - `Mantle`: [0x1Eb60016810F8cCfC85a3781c66D0Ed2C373D90C](https://explorer.sepolia.mantle.xyz/address/0x1Eb60016810F8cCfC85a3781c66D0Ed2C373D90C)
 
@@ -63,10 +61,11 @@ The contract is deployed on testnet:
 
 1. Download the world coin app
 2. Scan the following QR code
-   ![World Coin mini app QR](docs/images-demo/world-coin-mini-app.png)
+   <img src="docs/images-demo/world-coin-mini-app.png" alt="World Coin mini app QR" width="100" />
+
    It will open the app on your phone.
 
-TODO: ADD DEMO
+   ![Mini App World Coin](docs/images-demo/mini-app.gif)
 
 ## 🚀 Getting Started
 
