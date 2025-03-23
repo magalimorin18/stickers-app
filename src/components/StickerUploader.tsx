@@ -60,45 +60,45 @@ function StickerUploader() {
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto text-center">
-      <h1 className="text-3xl font-bold mb-4 text-black mt-10">
-        Choose chain & Connect wallet
-      </h1>
-      <div className="flex-row">
-        <button
-          onClick={() => {
-            setChainParameters(zkSyncTestnetParams);
-          }}
-          className="bg-pink-400 text-white px-4 py-2 rounded gap:10"
-        >
-          ZKSYNC
-        </button>
+    <div className="px-6 py-10 max-w-xl mx-auto text-center">
+      <div className="px-6 py-10 max-w-xl mx-auto text-center">
+        <h1 className="text-3xl font-bold mb-8 text-gray-800">
+          Choose Chain & Connect Wallet
+        </h1>
 
-        <button
-          onClick={() => {
-            setChainParameters(mantleTestnetParams);
-          }}
-          className="bg-pink-400 text-white px-4 py-2 rounded"
-        >
-          MANTLE
-        </button>
-      </div>
-
-      {isConnected ? (
-        <div>
-          <p className="text-lg mb-2">Connected Wallet:</p>
-          <p className="font-mono text-sm bg-gray-100 p-2 rounded">
-            {walletAddress}
-          </p>
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6">
+          <button
+            onClick={() => setChainParameters(zkSyncTestnetParams)}
+            className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl transition-all shadow-md"
+          >
+            ZKSYNC
+          </button>
+          <button
+            onClick={() => setChainParameters(mantleTestnetParams)}
+            className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl transition-all shadow-md"
+          >
+            MANTLE
+          </button>
         </div>
-      ) : (
-        <button
-          onClick={connectWallet}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Connect MetaMask on {chainParameters.chainName} network
-        </button>
-      )}
+
+        {isConnected ? (
+          <div className="bg-gray-50 p-4 rounded-lg shadow-sm">
+            <p className="text-lg font-medium mb-1 text-gray-700">
+              Connected Wallet:
+            </p>
+            <p className="font-mono text-sm bg-gray-100 p-2 rounded break-all">
+              {walletAddress}
+            </p>
+          </div>
+        ) : (
+          <button
+            onClick={connectWallet}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl shadow-md transition-all"
+          >
+            Connect MetaMask on {chainParameters.chainName} Network
+          </button>
+        )}
+      </div>
 
       <h1 className="text-3xl font-bold mb-4 text-black mt-10 ">
         Upload your sticker

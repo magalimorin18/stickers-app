@@ -30,13 +30,18 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
   };
 
   return (
-    <div className="main">
+    <div className="main text-center">
       <input
         type="file"
         className="hidden-input"
         accept=".jpg"
         onChange={(e) => handleFileChange(e.target.files)}
       />
+      <div>
+        <button className="mt-2 text-red-500" onClick={removeImage}>
+          Remove Image
+        </button>
+      </div>
 
       {imagePreview && (
         <div className="preview-container mt-4">
@@ -50,11 +55,6 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({
             }}
             className="rounded shadow"
           />
-          <div>
-            <button className="mt-2 text-red-500" onClick={removeImage}>
-              Remove Image
-            </button>
-          </div>
         </div>
       )}
     </div>
