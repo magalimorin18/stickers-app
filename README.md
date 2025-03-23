@@ -95,6 +95,12 @@ Open http://localhost:3000 with your browser to see the result.
 
 ## 🚀UX/UI
 
-Basic banrd kit and desig system
+1. Basic brand kit and desig system: 
 https://www.figma.com/design/keaLZ0Xuo87cGgRywtZmdI/BASE-STICKY?node-id=770-526&t=Rcn3XTux2FkZXppr-1
 
+2.Justification: 
+https://www.figma.com/proto/keaLZ0Xuo87cGgRywtZmdI/BASE-STICKY?node-id=1671-2987&p=f&t=vDEqvuj8lj3YqRVv-1&scaling=min-zoom&content-scaling=fixed&page-id=3%3A35
+
+3. Wireframe: https://www.figma.com/design/keaLZ0Xuo87cGgRywtZmdI/BASE-STICKY?node-id=3742-3575&t=Rcn3XTux2FkZXppr-1
+
+4. Interactive: https://www.figma.com/proto/keaLZ0Xuo87cGgRywtZmdI/BASE-STICKY?node-id=3742-3179&t=vWEnrr5CbvWX5P9e-1&scaling=scale-down&content-scaling=fixed&page-id=1251%3A13654&starting-point-node-id=1320%3A16249
