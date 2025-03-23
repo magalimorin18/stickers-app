@@ -33,7 +33,7 @@ Meanwhile, creators can:
 ## ⚙️ Tech Stack
 
 - 🧠 **zkSync** — decentralized ownership & royalties
-- 🔒 **Mantle**
+- 🚀 **Mantle** — high-performance
 - ⚛️ **React** — modern frontend interface
 - ▲ **Vercel** — fast and easy frontend deployment
 
