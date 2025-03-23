@@ -22,11 +22,23 @@ Meanwhile, creators can:
 - Protect their designs on-chain
 - Earn automatic royalties every time their stickers are shared or used
 
+💫 Sticky Marketplace is also integrated as a **Worldcoin Mini App**, allowing users to:
+
+- Instantly log in using their **World ID**, a unique privacy-preserving identity
+- Access exclusive sticker rewards and onchain perks verified via Worldcoin
+- Boost trust and prevent spam or abuse using Worldcoin’s proof-of-personhood mechanism
+
 ## 📽 Demo
 
-### Upload your stickers
+### 📤 Upload your stickers
 
-### Get your rewards!
+### 🛍️ Visit sticker marketplace
+
+### 🏆 Check Leaderboard
+
+### 🎁 Get your rewards!
+
+TODO: ADD DEMO
 
 ![Sticky Marketplace Demo](docs/images-demo/demo-payment.gif)
 
@@ -34,8 +46,27 @@ Meanwhile, creators can:
 
 - 🧠 **zkSync** — decentralized ownership & royalties
 - 🚀 **Mantle** — high-performance
+- 🌎 **World coin** — privacy-preserving mini app
 - ⚛️ **React** — modern frontend interface
 - ▲ **Vercel** — fast and easy frontend deployment
+
+## Smart Contracts
+
+Find the smart contract code in the `smart-contracts/contracts` folder.
+The contract is deployed on testnet:
+
+- `zkSync`:[0x6914403E7873ABAa193Deb1Bdd712C47c1A7bA04](https://sepolia.explorer.zksync.io/address/0x6914403E7873ABAa193Deb1Bdd712C47c1A7bA04)
+
+- `Mantle`: [0x1Eb60016810F8cCfC85a3781c66D0Ed2C373D90C](https://explorer.sepolia.mantle.xyz/address/0x1Eb60016810F8cCfC85a3781c66D0Ed2C373D90C)
+
+## World coin mini app
+
+1. Download the world coin app
+2. Scan the following QR code
+   ![World Coin mini app QR](docs/images-demo/world-coin-mini-app.png)
+   It will open the app on your phone.
+
+TODO: ADD DEMO
 
 ## 🚀 Getting Started
 
