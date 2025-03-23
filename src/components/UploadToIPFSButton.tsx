@@ -58,7 +58,7 @@ const UploadToIPFSButton: React.FC<UploadToIPFSButtonProps> = ({
     <div className="mt-4 text-center">
       <button
         onClick={handleUpload}
-        className="bg-purple-600 text-white px-4 py-2 rounded disabled:opacity-50"
+        className="bg-purple-500 text-white px-4 py-2 rounded disabled:opacity-50"
         disabled={!imageFile || isUploading}
       >
         {isUploading ? "Uploading to IPFS..." : "Upload to IPFS"}
