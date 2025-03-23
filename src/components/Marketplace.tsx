@@ -2,44 +2,10 @@ import { CSSProperties, useState } from "react";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import { BASE_URL } from "../globals";
-
-interface StickerPack {
-  id: string;
-  packName: string;
-  creatorName: string;
-  stickers: { imageUrl: string; emoji: string[] }[]; // Array of sticker images and emojis
-  android_play_store_link?: string; // Optional
-  ios_app_store_link?: string; // Optional
-}
+import { StickerPack } from "../interface";
+import { stickerPacks } from "../constants";
 
 function Marketplace() {
-  const stickerPacks: StickerPack[] = [
-    {
-      id: "1",
-      packName: "Personal Stickers",
-      creatorName: "Magali",
-      stickers: [
-        { imageUrl: "./images/mag-1.webp", emoji: ["😀"] },
-        { imageUrl: "./images/mag-2.jpeg", emoji: ["😀"] },
-        {
-          imageUrl:
-            "https://api.universalprofile.cloud/ipfs/QmPNNJCM67pHeWFQsJuavHfWEzWTM1Ws28Po43v1tx58Kf",
-          emoji: ["😂"],
-        },
-      ],
-    },
-    {
-      id: "2",
-      packName: "Funny Faces",
-      creatorName: "StickerMaster",
-      stickers: [
-        { imageUrl: "./images/ff-1.png", emoji: ["😀"] },
-        { imageUrl: "./images/ff-2.png", emoji: ["😀"] },
-        { imageUrl: "./images/ff-3.png", emoji: ["😀"] },
-      ],
-    },
-  ];
-
   const [isExporting, setIsExporting] = useState(false); // Loading State
 
   const createWastickersFile = async (pack: StickerPack): Promise<Blob> => {
@@ -116,7 +82,11 @@ function Marketplace() {
 
   return (
     <div style={marketplaceContainerStyle}>
-      <h2>Marketplace de Sticker Packs</h2>
+      <div className="p-4 max-w-xl mx-auto text-center">
+        <h1 className="text-3xl font-bold mb-4 text-black mt-10">
+          Explore our marketplace
+        </h1>
+      </div>
       <div style={stickerPackListStyle}>
         {stickerPacks.map((pack) => (
           <div key={pack.id} style={stickerPackCardStyle}>

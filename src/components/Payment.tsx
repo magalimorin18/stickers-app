@@ -6,7 +6,6 @@ import { getAddress } from "viem";
 
 import { DaimoPayProvider, getDefaultConfig } from "@daimo/pay";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { type ReactNode } from "react";
 import { createConfig, WagmiProvider } from "wagmi";
 import { DAIMOPAY_API_URL } from "../shared";
 
@@ -20,7 +19,7 @@ export const wagmiConfig = createConfig(
 const queryClient = new QueryClient();
 
 function Payment() {
-  const creatorName = "Pepe Diaz";
+  const creatorName = "Santiago Rivadavia";
   const stickerPacksCount = 12;
   const successfulDownloads = 100;
   const walletAddress = "0xe1448A266849538da23Df9061dDa57C20aF1009e"; // Ejemplo de dirección
@@ -33,21 +32,16 @@ function Payment() {
 
   return (
     <div style={paymentContainerStyle}>
-      <h2 style={headerStyle}>Payment Details</h2>
+      <h2 style={headerStyle}>Get your rewards!</h2>
 
-      <p style={creatorInfoStyle}>Creator Name: {creatorName}</p>
-
-      <p style={stickerPacksStyle}>
-        Sticker Packs: {stickerPacksCount}
-        {/* Puedes añadir aquí miniaturas de stickers si tienes */}
-      </p>
+      <p style={creatorInfoStyle}>Hey {creatorName}!</p>
 
       <p style={successfulDownloadsStyle}>
-        {successfulDownloads} Downloads Successfully
+        Your sticker pack got {successfulDownloads} downloads
       </p>
 
       <p style={walletAddressStyle}>
-        Your Wallet: {walletAddress.substring(0, 10)}...
+        Connected Wallet: {walletAddress.substring(0, 10)}...
         {walletAddress.substring(walletAddress.length - 10)}
       </p>
 
@@ -62,7 +56,7 @@ function Payment() {
                 "0xe1448A266849538da23Df9061dDa57C20aF1009e",
               )}
               toToken={getAddress(baseUSDC.token)}
-              intent="Cash In"
+              intent="Claim your rewards"
             />
           </DaimoPayProvider>
         </QueryClientProvider>

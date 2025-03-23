@@ -16,7 +16,7 @@ function Navbar() {
       }}
     >
       <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-        Subir Sticker
+        Upload Sticker
       </Link>
       <Link
         to="/marketplace"
@@ -31,7 +31,7 @@ function Navbar() {
         Leaderboard
       </Link>
       <Link to="/payment" style={{ color: "white", textDecoration: "none" }}>
-        Pagos
+        Rewards
       </Link>
     </nav>
   );
