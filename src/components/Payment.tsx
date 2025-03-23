@@ -58,9 +58,11 @@ function Payment() {
           <DaimoPayButton
             appId="daimopay-demo"
             toChain={baseUSDC.chainId}
+            toUnits="5.01" // 0.001 ETH
             toAddress={getAddress("0xe1448A266849538da23Df9061dDa57C20aF1009e")}
             toToken={getAddress(baseUSDC.token)}
-            intent="Deposit"
+            
+            intent="Cash In"
             />
           </DaimoPayProvider>
         </QueryClientProvider>
