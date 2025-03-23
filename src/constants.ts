@@ -1,4 +1,4 @@
-import { StickerPack } from "./interface";
+import { Chain, StickerPack } from "./interface";
 
 export const stickerPacks: StickerPack[] = [
   {
@@ -70,3 +70,26 @@ export const stickerPacks: StickerPack[] = [
     ],
   },
 ];
+
+export const zkSyncTestnetParams = {
+  chainId: "0x12C",
+  chainName: Chain.ZKSYNC,
+  nativeCurrency: {
+    name: "ETH",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  rpcUrls: ["https://sepolia.era.zksync.dev"],
+};
+
+// Mantle Testnet Chain Info
+export const mantleTestnetParams = {
+  chainId: "0x138B",
+  chainName: Chain.MANTLE,
+  nativeCurrency: {
+    name: "MNT",
+    symbol: "MNT",
+    decimals: 18,
+  },
+  rpcUrls: ["https://rpc.sepolia.mantle.xyz"],
+};
