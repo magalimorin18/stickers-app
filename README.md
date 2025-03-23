@@ -33,16 +33,25 @@ Meanwhile, creators can:
 
 ### 📤 Upload your stickers
 
+ <img src="docs/images-demo/appDemo.gif" alt="World Coin mini app " width="800" />
+
 ### 🛍️ Visit marketplace
+
+ <img src="docs/images-demo/appMarketplace.gif" alt="World Coin mini app " width="800" />
 
 ### 🏆 Check Leaderboard
 
+ <img src="docs/images-demo/appLeaderboard.png" alt="World Coin mini app " width="800" />
+
 ### 🎁 Get your rewards!
+
+ <img src="docs/images-demo/demo-payment.gif" alt="World Coin mini app " width="800" />
 
 ## ⚙️ Tech Stack
 
 - 🧠 **zkSync** — decentralized ownership & royalties
 - 🚀 **Mantle** — high-performance
+- 🚀 **Mantle / Daimo Pay** — accept crypto from any chain
 - 🌎 **World coin** — privacy-preserving mini app
 - ⚛️ **React** — modern frontend interface
 - ▲ **Vercel** — fast and easy frontend deployment
